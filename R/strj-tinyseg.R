@@ -1,7 +1,7 @@
-#' Simply tokenize sentence
+#' Segment text into tokens
 #'
-#' Split the given sentence into tokens
-#' using \code{stringi::stri_split_boundaries(type = "word")}.
+#' Segment Japanese text into several tokens
+#' using the 'TinySegmenter.js'.
 #'
 #' @param text Character vector to be tokenized.
 #' @param format Output format. Choose `list` or `data.frame`.
@@ -11,14 +11,14 @@
 #' @return List or data.frame.
 #' @export
 #' @examples
-#' strj_tokenize(
+#' strj_tinyseg(
 #'   paste0(
 #'     "\u3042\u306e\u30a4\u30fc\u30cf\u30c8",
 #'     "\u30fc\u30f4\u30a9\u306e\u3059\u304d",
 #'     "\u3068\u304a\u3063\u305f\u98a8"
 #'   )
 #' )
-#' strj_tokenize(
+#' strj_tinyseg(
 #'   paste0(
 #'     "\u3042\u306e\u30a4\u30fc\u30cf\u30c8",
 #'     "\u30fc\u30f4\u30a9\u306e\u3059\u304d",
@@ -26,7 +26,7 @@
 #'   ),
 #'   format = "data.frame"
 #' )
-strj_tokenize <- function(text, format = c("list", "data.frame"), split = FALSE) {
+strj_tinyseg <- function(text, format = c("list", "data.frame"), split = FALSE) {
   stopifnot(!is.null(text))
 
   format <- rlang::arg_match(format)
@@ -39,13 +39,20 @@ strj_tokenize <- function(text, format = c("list", "data.frame"), split = FALSE)
   text <- stringi::stri_enc_toutf8(text) %>%
     purrr::set_names(nm)
 
+  ctx <- rlang::env_get(.pkgenv, "ctx")
+
   if (identical(format, "list")) {
     purrr::imap(text, function(vec, doc_id) {
       if (identical(split, TRUE)) {
         vec <- stringi::stri_split_boundaries(vec, type = "sentence") %>%
           unlist()
       }
-      unlist(stringi::stri_split_boundaries(vec, type = "word"))
+      unlist(lapply(vec, function(elem) {
+        if (is.na(elem)) {
+          return(NA_character_)
+        }
+        ctx$call("audubon.tinysegmenter.segment", elem)
+      }))
     })
   } else {
     purrr::imap_dfr(text, function(vec, doc_id) {
@@ -55,7 +62,12 @@ strj_tokenize <- function(text, format = c("list", "data.frame"), split = FALSE)
       }
       data.frame(
         doc_id = doc_id,
-        token = unlist(stringi::stri_split_boundaries(vec, type = "word"))
+        token = unlist(lapply(vec, function(elem) {
+          if (is.na(elem)) {
+            return(NA_character_)
+          }
+          ctx$call("audubon.tinysegmenter.segment", elem)
+        }))
       )
     }) %>%
       dplyr::mutate(doc_id = as.factor(.data$doc_id))

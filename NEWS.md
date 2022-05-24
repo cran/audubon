@@ -1,3 +1,8 @@
+# audubon 0.2.0
+
+* Updated `ngram_tokenizer` function.
+* Added a wrapper function of the 'TinySegmenter' written by Taku Kudo.
+
 # audubon 0.1.2
 
 * Updated `pack` function.
