@@ -1,3 +1,10 @@
+# audubon 0.3.0
+
+* Updated `strj_fill_iter_mark` function.
+  * `strj_fill_iter_mark` now replaces a sequence of iteration marks recursively.
+* Updated `strj_tokenize` function.
+  * `strj_tokenize` now can retrieve `engine` argument to switch tokenizers for splitting text into tokens.
+
 # audubon 0.2.0
 
 * Updated `ngram_tokenizer` function.
