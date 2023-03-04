@@ -6,8 +6,9 @@ cast_sparse <- function(data, row, column, value, ...) {
   if (rlang::quo_is_missing(value_col)) {
     value_col <- 1
   }
-  data <- dplyr::ungroup(data)
-  data <- dplyr::distinct(data, !!sym(row_col), !!sym(column_col), .keep_all = TRUE)
+  data <-
+    dplyr::ungroup(data) %>%
+    dplyr::distinct(!!sym(row_col), !!sym(column_col), .keep_all = TRUE)
   row_names <- dplyr::pull(data, row_col)
   col_names <- dplyr::pull(data, column_col)
   if (is.numeric(value_col)) {
@@ -77,7 +78,7 @@ global_entropy <- function(sp) {
   1 + (Matrix::rowSums((pj * log(pj)), na.rm = TRUE) / log(ndocs))
 }
 
-#' Bind the term frequency and inverse document frequency
+#' Bind term frequency and inverse document frequency
 #'
 #' Calculates and binds the term frequency, inverse document frequency,
 #' and TF-IDF of the dataset.
@@ -104,20 +105,18 @@ global_entropy <- function(sp) {
 #' @param n Column containing document-term counts as string or symbol.
 #' @param tf Method for computing term frequency.
 #' @param idf Method for computing inverse document frequency.
-#' @param norm Logical; If supplied `TRUE`, the raw term counts are normalized
+#' @param norm Logical; If passed as `TRUE`, the raw term counts are normalized
 #' being divided with L2 norms before computing IDF values.
-#' @param rmecab_compat Logical; If supplied `TRUE`, computes values while
+#' @param rmecab_compat Logical; If passed as `TRUE`, computes values while
 #' taking care of compatibility with 'RMeCab'.
 #' Note that 'RMeCab' always computes IDF values using term frequency
 #' rather than raw term counts, and thus TF-IDF values may be
 #' doubly affected by term frequency.
-#' @return data.frame.
+#' @return A data.frame.
 #' @export
 #' @examples
 #' \dontrun{
-#' df <- dplyr::group_by(hiroba, doc_id) |>
-#'   dplyr::count(token) |>
-#'   dplyr::ungroup()
+#' df <- dplyr::add_count(hiroba, doc_id, token)
 #' bind_tf_idf2(df)
 #' }
 bind_tf_idf2 <- function(tbl,

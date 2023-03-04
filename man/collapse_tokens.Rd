@@ -14,7 +14,7 @@ collapse_tokens(tbl, condition, .collapse = "")
 \item{.collapse}{String with which tokens are concatenated.}
 }
 \value{
-data.frame.
+A data.frame.
 }
 \description{
 Concatenates sequences of tokens in the tidy text dataset,
@@ -26,6 +26,8 @@ and columns for grouping sequences. So, the returned data.frame
 has only 'doc_id', 'sentence_id', 'token_id', and 'token' columns.
 }
 \examples{
+\dontrun{
 df <- prettify(head(hiroba), col_select = "POS1")
 collapse_tokens(df, POS1 == "\u540d\u8a5e")
+}
 }

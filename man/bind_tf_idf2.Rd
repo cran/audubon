@@ -2,7 +2,7 @@
 % Please edit documentation in R/bind_tf_idf2.R
 \name{bind_tf_idf2}
 \alias{bind_tf_idf2}
-\title{Bind the term frequency and inverse document frequency}
+\title{Bind term frequency and inverse document frequency}
 \usage{
 bind_tf_idf2(
   tbl,
@@ -28,17 +28,17 @@ bind_tf_idf2(
 
 \item{idf}{Method for computing inverse document frequency.}
 
-\item{norm}{Logical; If supplied \code{TRUE}, the raw term counts are normalized
+\item{norm}{Logical; If passed as \code{TRUE}, the raw term counts are normalized
 being divided with L2 norms before computing IDF values.}
 
-\item{rmecab_compat}{Logical; If supplied \code{TRUE}, computes values while
+\item{rmecab_compat}{Logical; If passed as \code{TRUE}, computes values while
 taking care of compatibility with 'RMeCab'.
 Note that 'RMeCab' always computes IDF values using term frequency
 rather than raw term counts, and thus TF-IDF values may be
 doubly affected by term frequency.}
 }
 \value{
-data.frame.
+A data.frame.
 }
 \description{
 Calculates and binds the term frequency, inverse document frequency,
@@ -66,9 +66,7 @@ Types of inverse document frequencies can be switched with \code{idf} argument:
 }
 \examples{
 \dontrun{
-df <- dplyr::group_by(hiroba, doc_id) |>
-  dplyr::count(token) |>
-  dplyr::ungroup()
+df <- dplyr::add_count(hiroba, doc_id, token)
 bind_tf_idf2(df)
 }
 }
