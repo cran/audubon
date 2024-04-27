@@ -80,8 +80,7 @@ other tokenizers.
 ``` r
 strj_tokenize("あのイーハトーヴォのすきとおった風", engine = "budoux")
 #> $`1`
-#> [1] "あのイーハトーヴォの" "すきと"               "おった"              
-#> [4] "風"
+#> [1] "あの"             "イーハトーヴォの" "すきとおった"     "風"
 ```
 
 ### Japanese text normalization
@@ -130,10 +129,9 @@ strj_rewrite_as_def("惡と假面のルール", read_rewrite_def(system.file("de
 
 ## License
 
-© 2023 Akiru Kato
+© 2024 Akiru Kato
 
 Licensed under the [Apache License, Version
 2.0](https://www.apache.org/licenses/LICENSE-2.0.html).
 
-Icons made by [iconixar](https://www.flaticon.com/authors/iconixar) from
-[www.flaticon.com](https://www.flaticon.com/).
+Icons made by iconixar from flaticon.

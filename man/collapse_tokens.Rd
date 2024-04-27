@@ -9,7 +9,8 @@ collapse_tokens(tbl, condition, .collapse = "")
 \arguments{
 \item{tbl}{A tidy text dataset.}
 
-\item{condition}{A logical expression.}
+\item{condition}{<\code{\link[rlang:args_data_masking]{data-masked}}>
+A logical expression.}
 
 \item{.collapse}{String with which tokens are concatenated.}
 }
@@ -26,7 +27,7 @@ and columns for grouping sequences. So, the returned data.frame
 has only 'doc_id', 'sentence_id', 'token_id', and 'token' columns.
 }
 \examples{
-\dontrun{
+\donttest{
 df <- prettify(head(hiroba), col_select = "POS1")
 collapse_tokens(df, POS1 == "\u540d\u8a5e")
 }

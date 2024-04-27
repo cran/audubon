@@ -6,7 +6,7 @@
 #' such as Japanese kana ligature (aka. goryaku-gana).
 #'
 #' @param text Character vector.
-#' @return A character vector.
+#' @returns A character vector.
 #' @export
 #' @examples
 #' strj_hiraganize(
@@ -22,7 +22,7 @@
 strj_hiraganize <- function(text) {
   ctx <- rlang::env_get(.pkgenv, "ctx")
   sapply(stringi::stri_trans_nfkc(text), function(elem) {
-    ctx$call("audubon.japanese.hiraganize", elem)
+    ctx$call("window.audubon.japanese.hiraganize", elem)
   }, USE.NAMES = FALSE)
 }
 
@@ -34,7 +34,7 @@ strj_hiraganize <- function(text) {
 #' such as Japanese kana ligature (aka. goryaku-gana).
 #'
 #' @param text Character vector.
-#' @return A character vector.
+#' @returns A character vector.
 #' @export
 #' @examples
 #' strj_katakanize(
@@ -50,7 +50,7 @@ strj_hiraganize <- function(text) {
 strj_katakanize <- function(text) {
   ctx <- rlang::env_get(.pkgenv, "ctx")
   sapply(stringi::stri_trans_nfkc(text), function(elem) {
-    ctx$call("audubon.japanese.katakanize", elem)
+    ctx$call("window.audubon.japanese.katakanize", elem)
   }, USE.NAMES = FALSE)
 }
 
@@ -71,7 +71,7 @@ strj_katakanize <- function(text) {
 #' If elements are composed of except but hiragana and katakana letters,
 #' those letters are dropped from the return value.
 #' @param config Configuration used to romanize. Default is `wikipedia`.
-#' @return A character vector.
+#' @returns A character vector.
 #' @export
 #' @examples
 #' strj_romanize(
@@ -92,7 +92,7 @@ strj_romanize <- function(text,
   config <- rlang::arg_match(config)
   ctx <- rlang::env_get(.pkgenv, "ctx")
   sapply(stringi::stri_trans_nfkc(text), function(elem) {
-    ctx$call("audubon.japanese.romanize", elem, config)
+    ctx$call("window.audubon.japanese.romanize", elem, config)
   }, USE.NAMES = FALSE)
 }
 
@@ -105,13 +105,13 @@ strj_romanize <- function(text,
 #' In case you convert much bigger numbers, try to use the 'arabic2kansuji' package.
 #'
 #' @param int Integers.
-#' @return A character vector.
+#' @returns A character vector.
 #' @export
 #' @examples
 #' strj_transcribe_num(c(10L, 31415L))
 strj_transcribe_num <- function(int) {
   ctx <- rlang::env_get(.pkgenv, "ctx")
   sapply(as.integer(int), function(elem) {
-    ctx$call("audubon.japanese.transcribeNumber", elem)
+    ctx$call("window.audubon.japanese.transcribeNumber", elem)
   }, USE.NAMES = FALSE)
 }

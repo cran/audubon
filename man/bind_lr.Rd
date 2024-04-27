@@ -9,7 +9,8 @@ bind_lr(tbl, term = "token", lr_mode = c("n", "dn"), avg_rate = 1)
 \arguments{
 \item{tbl}{A tidy text dataset.}
 
-\item{term}{Column containing terms as string or symbol.}
+\item{term}{<\code{\link[rlang:args_data_masking]{data-masked}}>
+Column containing terms as string or symbol.}
 
 \item{lr_mode}{Method for computing 'FL' and 'FR' values.
 \code{n} is equivalent to 'LN' and 'RN', and \code{dn} is equivalent to 'LDN' and 'RDN'.}
@@ -27,7 +28,7 @@ The 'LR' value is the synergistic average of bigram importance
 that based on the words and their positions (left or right side).
 }
 \examples{
-\dontrun{
+\donttest{
 prettify(hiroba, col_select = "POS1") |>
   mute_tokens(POS1 != "\u540d\u8a5e") |>
   bind_lr()

@@ -8,12 +8,13 @@
 #' has only 'doc_id', 'sentence_id', 'token_id', and 'token' columns.
 #'
 #' @param tbl A tidy text dataset.
-#' @param condition A logical expression.
+#' @param condition <[`data-masked`][rlang::args_data_masking]>
+#' A logical expression.
 #' @param .collapse String with which tokens are concatenated.
-#' @return A data.frame.
+#' @returns A data.frame.
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' df <- prettify(head(hiroba), col_select = "POS1")
 #' collapse_tokens(df, POS1 == "\u540d\u8a5e")
 #' }

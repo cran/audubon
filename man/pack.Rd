@@ -9,14 +9,15 @@ pack(tbl, pull = "token", n = 1L, sep = "-", .collapse = " ")
 \arguments{
 \item{tbl}{A data.frame of tokens.}
 
-\item{pull}{Column to be packed into text or ngrams body. Default value is \code{token}.}
+\item{pull}{<\code{\link[rlang:args_data_masking]{data-masked}}>
+Column to be packed into text or ngrams body. Default value is \code{token}.}
 
 \item{n}{Integer internally passed to ngrams tokenizer function
 created of \code{audubon::ngram_tokenizer()}}
 
 \item{sep}{Character scalar internally used as the concatenator of ngrams.}
 
-\item{.collapse}{This argument is passed to \code{stringi::stri_join()}.}
+\item{.collapse}{This argument is passed to \code{stringi::stri_c()}.}
 }
 \value{
 A tibble.
