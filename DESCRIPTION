@@ -1,6 +1,6 @@
 Package: audubon
 Title: Japanese Text Processing Tools
-Version: 0.5.2
+Version: 0.6.1
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("cre", "aut")),
     person("Koki", "Takahashi", role = "cph",
@@ -20,21 +20,21 @@ License: Apache License (>= 2)
 URL: https://github.com/paithiov909/audubon,
         https://paithiov909.github.io/audubon/
 BugReports: https://github.com/paithiov909/audubon/issues
-Depends: R (>= 2.10)
-Imports: dplyr (>= 1.1.0), magrittr, Matrix, memoise, purrr, readr,
-        rlang (>= 0.4.11), stringi, V8
-Suggests: roxygen2, spelling, testthat (>= 3.0.0)
+Depends: R (>= 4.1)
+Imports: dplyr (>= 1.1.0), magrittr, purrr, readr, rlang, stringi (>=
+        1.8.3), V8
+Suggests: roxygen2, scales, testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2024-04-27 00:19:35 UTC; paithiov909
+Packaged: 2025-12-21 14:33:22 UTC; paithiov909
 Author: Akiru Kato [cre, aut],
   Koki Takahashi [cph] (Author of japanese.js),
   Shuhei Iitsuka [cph] (Author of budoux),
   Taku Kudo [cph] (Author of TinySegmenter)
 Maintainer: Akiru Kato <paithiov909@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-04-27 02:10:02 UTC
+Date/Publication: 2025-12-21 14:50:02 UTC
