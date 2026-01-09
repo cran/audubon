@@ -1,6 +1,6 @@
 Package: audubon
 Title: Japanese Text Processing Tools
-Version: 0.6.1
+Version: 0.6.2
 Authors@R: c(
     person("Akiru", "Kato", , "paithiov909@gmail.com", role = c("cre", "aut")),
     person("Koki", "Takahashi", role = "cph",
@@ -30,11 +30,11 @@ Language: en-US
 LazyData: true
 RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2025-12-21 14:33:22 UTC; paithiov909
+Packaged: 2026-01-09 10:31:54 UTC; paithiov909
 Author: Akiru Kato [cre, aut],
   Koki Takahashi [cph] (Author of japanese.js),
   Shuhei Iitsuka [cph] (Author of budoux),
   Taku Kudo [cph] (Author of TinySegmenter)
 Maintainer: Akiru Kato <paithiov909@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-12-21 14:50:02 UTC
+Date/Publication: 2026-01-09 11:20:02 UTC
